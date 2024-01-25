@@ -1,3 +1,4 @@
+"use client"
 import React from 'react'
 import { IoBagRemoveOutline } from "react-icons/io5";
 import { IoLocationOutline } from "react-icons/io5";
@@ -5,6 +6,7 @@ import { GoClock } from "react-icons/go";
 import { LiaMoneyBillWaveAltSolid } from "react-icons/lia";
 import Image from 'next/image';
 import moment from 'moment';
+import Link from 'next/link';
 
 const JobCard = ({item}:any) => {
     const createdAt = item?.timestamp;
@@ -37,7 +39,9 @@ const JobCard = ({item}:any) => {
             <Image src={`${item.url}`} alt={`${item?.company}`} width={1000} height={1000} className='h-[100%] w-[100%] rounded-md object-fill'/>
         </div>
         <div className='flex flex-col gap-4'>
+          <Link href={`${item.url}`}>
             <h3 className='text-[15px] font-semibold line-clamp-1'>{item.job_title}</h3>
+            </Link>
             <div className='flex sm:flex-row flex-col sm:items-center gap-x-5 gap-y-2'>
                 {/* <div className='flex items-center  gap-x-1'>
                 <div className='text-lg text-gray-500'><IoBagRemoveOutline /></div>

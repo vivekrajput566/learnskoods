@@ -141,8 +141,8 @@ const MainJobSection = () => {
           </div>
         </div>
       </div>
-      {/* {isLoading?
-                  <div className="w-full min-h-[60vh]  flex items-center justify-center ">
+      {isLoading?
+                  <div className="w-[65%]  min-h-[60vh]  flex items-center justify-center ">
                   <div className="spinner">
                     <div></div>
                     <div></div>
@@ -151,7 +151,7 @@ const MainJobSection = () => {
                     <div></div>
                   </div>
                 </div>
-                : */}
+                :
 
       <div className='md:w-[65%]  w-[100%]'>
         <div className='flex items-center justify-between '>
@@ -227,7 +227,7 @@ const MainJobSection = () => {
                 </div>
                   } */}
       </div>
-      {/* } */}
+    } 
 
     </div>
   )
