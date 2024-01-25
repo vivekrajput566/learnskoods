@@ -2,11 +2,13 @@ import Link from 'next/link';
 import React, { useState } from 'react';
 import { RxCross1 } from 'react-icons/rx';
 import Signup from '../Signup/Signup';
+import Loader from '../loader/Loader';
 
 const Login = ({ setIsOpen, isOpen }: any) => {
   const [isShow, setIsShow] = useState(1);
   const [error, setError] = useState("");
   const [loginError, setLoginError] = useState("");
+  const [loading,setLoading]=useState(false)
   const [formData, setFormData] = useState({
 
     username: '',
@@ -26,7 +28,7 @@ const Login = ({ setIsOpen, isOpen }: any) => {
 
 
   const handleLogin = async (e: any) => {
-
+setLoading(true)
 
     e.preventDefault();
     
@@ -47,6 +49,7 @@ const Login = ({ setIsOpen, isOpen }: any) => {
       });
   
       if (!apiTokenResponse.ok) {
+setLoading(false)
        
         setLoginError('User Not Exist');
         return;
@@ -71,13 +74,20 @@ const Login = ({ setIsOpen, isOpen }: any) => {
 
       if (loginResponse.ok) {
         // Handle successful login
+        setIsOpen(false) 
+        document.body.classList.remove("no-scroll")
         setLoginError('User logged in successfully');
       } else {
+setLoading(false)
         
         setLoginError('Failed to log in');
         
       }
+setLoading(false)
+
     } catch (error) {
+setLoading(false)
+
       setLoginError('Failed to log in');
     }
   };
@@ -86,7 +96,7 @@ const Login = ({ setIsOpen, isOpen }: any) => {
 
   
   const handleRegister = async (e:any) => {
-
+setLoading(true)
       e.preventDefault();
       
     
@@ -110,7 +120,9 @@ const Login = ({ setIsOpen, isOpen }: any) => {
         if (response.ok) {
           console.log("fff")
          
-         
+        setLoading(false)
+        setIsOpen(false) 
+        document.body.classList.remove("no-scroll")
            setError('User registered successfully');
 
         } else {
@@ -118,11 +130,13 @@ const Login = ({ setIsOpen, isOpen }: any) => {
           console.log("fff")
           // Handle registration error
           console.log(response)
+          setLoading(false)
 
           setError('User Already Register');
         }
       }
       catch (error:any) {
+        setLoading(false)
 
         setError(`Error during registration: ${error}`); 
 
@@ -136,7 +150,10 @@ const Login = ({ setIsOpen, isOpen }: any) => {
 
     <div className="h-[100vh] w-[100vw] bg-[rgba(0,0,0,0.5)] fixed top-0 left-0  flex justify-center items-center z-50">
       <div className="modal-content rounded-md md:w-[35%] sm:w-[60%] w-[85%] bg-white md:p-10 p-5 relative">
-        <button type="button" className="absolute right-5 top-5 bg-[#f0f5f7] md:p-3 p-2 rounded-md" data-bs-dismiss="modal" onClick={() => setIsOpen(false)}><RxCross1 /></button>
+        <button type="button" className="absolute right-5 top-5 bg-[#f0f5f7] md:p-3 p-2 rounded-md" data-bs-dismiss="modal" onClick={() => {
+          setIsOpen(false) 
+           document.body.classList.remove("no-scroll")
+        }}><RxCross1 /></button>
 
         {isShow === 1 && (
           <div className="modal-body">
@@ -145,13 +162,13 @@ const Login = ({ setIsOpen, isOpen }: any) => {
                 <div className="form-inner">
                   <h3 className="md:text-2xl text-xl font-semibold mb-4 text-center">Login to Superio</h3>
 
-                  <div className="md:text-xl text-md font-semibold mb-4 text-center">{loginError}</div>
+                  <div className="md:text-xl text-md font-semibold mb-4 text-center text-[red]">{loginError}</div>
 
                   <form method="post" onSubmit={handleLogin}>
                     <div className="mb-4 login-container">
                       <label className="block text-gray-700 text-sm font-semibold mb-2">Username</label>
                       <input
-                        className="rounded w-full py-4 px-3 bg-[#f0f5f7]"
+                        className="rounded w-full py-4 px-3 bg-[#f0f5f7] outline-0"
                         type="text"
                         name="username"
                         placeholder="Username"
@@ -162,7 +179,7 @@ const Login = ({ setIsOpen, isOpen }: any) => {
                     <div className="mb-4 login-container">
                       <label className="block text-gray-700 text-sm font-semibold mb-2">Password</label>
                       <input
-                        className="rounded w-full py-4 px-3 bg-[#f0f5f7]"
+                        className="rounded w-full py-4 px-3 bg-[#f0f5f7] outline-0"
                         type="password"
                         name="password"
                         placeholder="Password"
@@ -171,9 +188,19 @@ const Login = ({ setIsOpen, isOpen }: any) => {
                       />
                     </div>
                     <div className="mb-4">
-                      <button className="bg-blue-500 w-full text-white py-4 px-4 rounded" type="submit" name="log-in">
-                        Log In
+                  <div className="bg-blue-500 w-full text-white py-4 px-4 rounded text-center ">
+                  <button  type="submit" name="log-in"
+                      style={{ height: "100%", position: "relative", }}>
+                        {/* Log In */}
+                        {loading && (
+                                <div className='' style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", }}>
+                                    <Loader />
+                                </div>
+                            )}
+                            {!loading && "Log In"}
+
                       </button>
+                  </div>
                     </div>
                   </form>
                   <div className="bottom-box flex justify-center  ">
@@ -201,7 +228,7 @@ const Login = ({ setIsOpen, isOpen }: any) => {
                     <div className="mb-4 login-container">
                       <label className="block text-gray-700 text-sm font-semibold mb-2">Username</label>
                       <input
-                        className="rounded w-full py-4 px-3 bg-[#f0f5f7]"
+                        className="rounded w-full py-4 px-3 bg-[#f0f5f7] outline-0"
                         type="text"
                         name="username"
                         placeholder="Username"
@@ -212,7 +239,7 @@ const Login = ({ setIsOpen, isOpen }: any) => {
                     <div className="mb-4 login-container">
                       <label className="block text-gray-700 text-sm font-semibold mb-2">Password</label>
                       <input
-                        className="rounded w-full py-4 px-3 bg-[#f0f5f7]"
+                        className="rounded w-full py-4 px-3 bg-[#f0f5f7] outline-0"
                         type="password"
                         name="password"
                         placeholder="Password"
@@ -223,7 +250,7 @@ const Login = ({ setIsOpen, isOpen }: any) => {
                     <div className="mb-4 login-container">
                       <label className="block text-gray-700 text-sm font-semibold mb-2">Email</label>
                       <input
-                        className="rounded w-full py-4 px-3 bg-[#f0f5f7]"
+                        className="rounded w-full py-4 px-3 bg-[#f0f5f7] outline-0"
                         type="text"
                         name="email"
                         placeholder="Email"
@@ -232,9 +259,19 @@ const Login = ({ setIsOpen, isOpen }: any) => {
                       />
                     </div>
                     <div className="mb-4">
-                      <button className="bg-blue-500 w-full text-white py-4 px-4 rounded" type="submit" name="register">
-                        Register
+                     <div className="bg-blue-500 w-full text-white py-4 px-4 rounded text-center ">
+                     <button  type="submit" name="register"
+                       style={{ height: "100%", position: "relative", }}>
+                        {/* Register */}
+                        {loading && (
+                                <div className='' style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", }}>
+                                    <Loader />
+                                </div>
+                            )}
+                            {!loading && "Register"}
                       </button>
+                     </div>
+
                     </div>
                   </form>
                   <div className="bottom-box flex justify-center">
