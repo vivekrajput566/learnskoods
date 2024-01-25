@@ -1,3 +1,13 @@
+// import React from 'react'
+
+// const FixedNav = () => {
+//   return (
+//     <div>FixedNav</div>
+//   )
+// }
+
+// export default FixedNav
+
 
 "use client"
 import Link from 'next/link';
@@ -5,31 +15,14 @@ import React,{useState} from 'react';
 import Login from '../Login/Login';
 import MobileNav from './MobileNav';
 import { useScrollDirection } from "../../utils/useScroll";
-import FixedNav from './FixedNav';
 
-const NavbarClient = () => {
+const FixedNav = () => {
     const [isOpen,setIsOpen]=useState("none")
-    const [username,setUsernameData]=useState(false)
-  
-
-    function setUsername(data:any){
-
-      setUsernameData(data);
-
-
-
-    }
-
-
-
     const isScrolled = useScrollDirection();
   return (
   <div>
     <MobileNav/>
-    {isScrolled?
-    <FixedNav/>
-    :
-      <header className="main-header bg-white text-black py-4  shadow-md border  px-body md:block hidden">
+      <header className="main-header bg-white text-black py-4  shadow-md border  px-body md:fixed top-0 left-0 z-30  w-full">
       <div className="main-box container mx-auto">
         <div className="flex items-center justify-between">
         
@@ -53,18 +46,17 @@ const NavbarClient = () => {
           <div className="outer-box flex items-center space-x-4">
             {/* <a href="/candidates-dashboard/cv-manager" className="upload-cv">Upload your CV</a> */}
             <div className="btn-box">
-              <div onClick={()=>setIsOpen("login")}  className="bg-[#e2eaf8] text-[#4f7dda] px-5 py-2 text-[13px] rounded-md cursor-pointer" >{!username?"Login / Register":username}</div>
+              <div onClick={()=>setIsOpen("login")}  className="bg-[#e2eaf8] text-[#4f7dda] px-5 py-2 text-[13px] rounded-md cursor-pointer"   >Login / Register</div>
               {/* <Link href={`/signup`}  className="theme-btn btn-style-one">Job Post</Link> */}
             </div>
           </div>
           </div>
         </div>
-        {isOpen==="login"&&<Login setIsOpen={setIsOpen} isOpen={isOpen} setUsername={setUsername}/>}
+        {isOpen==="login"&&<Login setIsOpen={setIsOpen} isOpen={isOpen}/>}
       </div>
     </header>
-}
   </div>
   );
 };
 
-export default NavbarClient;
+export default FixedNav;
