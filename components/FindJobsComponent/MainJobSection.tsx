@@ -141,17 +141,17 @@ const MainJobSection = () => {
           </div>
         </div>
       </div>
-      {isLoading?
-                  <div className="w-[65%]  min-h-[60vh]  flex items-center justify-center ">
-                  <div className="spinner">
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                  </div>
-                </div>
-                :
+      {isLoading && 
+                  <Modal isOpen={isModalOpen} setOpen={setIsModalOpen}>
+          <div className="flex flex-col gap-2 justify-center items-center">
+            <CircularProgress className="!text-white"></CircularProgress>
+            <p className="text-white font-medium text-lg">
+              Processing...
+            </p>
+          </div>
+        </Modal>
+        
+      }
 
       <div className='md:w-[65%]  w-[100%]'>
         <div className='flex items-center justify-between '>
@@ -227,8 +227,7 @@ const MainJobSection = () => {
                 </div>
                   } */}
       </div>
-    } 
-
+  
     </div>
   )
 }
