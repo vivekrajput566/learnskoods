@@ -1,10 +1,10 @@
+"use client"
 import Link from 'next/link';
 import React, { useState } from 'react';
 import { RxCross1 } from 'react-icons/rx';
-import Signup from '../Signup/Signup';
 import Loader from '../loader/Loader';
 
-const Login = ({ setIsOpen, isOpen }: any) => {
+const Login = ({ setIsOpen, isOpen ,setUsername}: any) => {
   const [isShow, setIsShow] = useState(1);
   const [error, setError] = useState("");
   const [loginError, setLoginError] = useState("");
@@ -65,16 +65,24 @@ const Login = ({ setIsOpen, isOpen }: any) => {
         }),
       });
 
-      console.log(await loginResponse.json());
+  
 
       if (loginResponse.ok) {
         // Handle successful login
-        setIsOpen(false)
+        // setIsOpen(false)
+
+        const result=await loginResponse.json();
+     
+
+        setUsername(result.data.username)
+        
+        setIsOpen(false) 
         document.body.classList.remove("no-scroll")
         setLoginError('User logged in successfully');
       } else {
         setLoading(false)
         setLoginError('Failed to log in');
+
       }
       setLoading(false)
 
@@ -123,17 +131,17 @@ const Login = ({ setIsOpen, isOpen }: any) => {
   return (
     <div className="h-[100vh] w-[100vw] bg-[rgba(0,0,0,0.5)] fixed top-0 left-0  flex justify-center items-center z-50">
       <div className="modal-content rounded-md md:w-[35%] sm:w-[60%] w-[85%] bg-white md:p-10 p-5 relative">
-        <button type="button" className="absolute right-5 top-5 bg-[#f0f5f7] md:p-3 p-2 rounded-md" data-bs-dismiss="modal" onClick={() => {
+        <button type="button" className="absolute right-3 top-3 bg-[#f0f5f7] md:p-3 p-2 rounded-md"  onClick={() => {
           setIsOpen(false)
           document.body.classList.remove("no-scroll")
-        }}><RxCross1 /></button>
+        }}><RxCross1 className='sm:text-base text-xs'/></button>
 
         {isShow === 1 && (
           <div className="modal-body">
             <div id="login-modal">
               <div className="login-form default-form">
                 <div className="form-inner">
-                  <h3 className="md:text-2xl text-xl font-semibold mb-4 text-center">Login to Superio</h3>
+                  <h3 className="md:text-2xl text-base font-semibold mb-4 text-center">Login to Superio</h3>
                   <div className="md:text-xl text-md font-semibold mb-4 text-center text-[red]">{loginError}</div>
                   <form method="post" onSubmit={handleLogin}>
                     <div className="mb-4 login-container">
@@ -168,7 +176,7 @@ const Login = ({ setIsOpen, isOpen }: any) => {
                               <Loader />
                             </div>
                           )}
-                          {!loading && "Log In"}
+                          {!loading && <span>Log In</span>}
 
                         </button>
                       </div>
@@ -176,7 +184,7 @@ const Login = ({ setIsOpen, isOpen }: any) => {
                   </form>
                   <div className="bottom-box flex justify-center  ">
                     <div className="text-center text-xs text-gray-500 flex items-center gap-1">
-                      Don't have an account?{' '}
+                      Don&apos;t have an account?{' '}
                       <div onClick={() => setIsShow(2)} className="call-modal signup text-gray-600 text-sm font-semibold cursor-pointer">
                         Signup
                       </div>
@@ -193,7 +201,7 @@ const Login = ({ setIsOpen, isOpen }: any) => {
             <div id="login-modal">
               <div className="login-form default-form">
                 <div className="form-inner">
-                  <h3 className="md:text-2xl text-xl font-semibold mb-4 text-center">Create a Free Superio Account</h3>
+                  <h3 className="md:text-2xl text-base font-semibold mb-4 text-center">Create a Free Superio Account</h3>
                   <div className="md:text-lg text-md font-semibold mb-4 text-red-500 text-center">{error}</div>
                   <form method="post" onSubmit={handleRegister}>
                     <div className="mb-4 login-container">
@@ -239,7 +247,7 @@ const Login = ({ setIsOpen, isOpen }: any) => {
                               <Loader />
                             </div>
                           )}
-                          {!loading && "Register"}
+                          {!loading && <span>Register</span>}
                         </button>
                       </div>
 

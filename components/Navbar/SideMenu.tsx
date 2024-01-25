@@ -35,7 +35,6 @@ const social = [
   },
 ];
 const SideMenu = ({ isSidebarOpen, setIsSidebarOpen }: any) => {
-
   return (
     <div
       className={`h-full  w-[100vw] bg-[rgba(0,0,0,0.5)]  fixed top-0 left-0 z-50 `}
@@ -64,93 +63,105 @@ const SideMenu = ({ isSidebarOpen, setIsSidebarOpen }: any) => {
                 document.body.classList.remove("no-scroll");
                 setIsSidebarOpen(false);
               }}
-              className="absolute right-3 top-3"><RxCross2 className="text-black text-2xl " /></div>
+              className="absolute right-3 top-3"
+            >
+              <RxCross2 className="text-black text-2xl " />
+            </div>
+            <Link href={"/"} className=" ">
+              <div className="  flex items-center ">
+                <h2 className="text-2xl font-bold text-[#1967d2] px-5 py-4 border-b w-full">
+                  Superio
+                </h2>
+              </div>
+            </Link>
             <div className="flex flex-col gap-4 sm:gap-5 md:gap-4 px-5 py-5 ">
               <div className="flex flex-col px-3 gap-2 items-start ">
-                <h1 className="text-2xl  text-[#a9a9a9] font-light">
-                  BROWSE
-                </h1>
+                <h1 className="text-2xl  text-[#a9a9a9] font-light">BROWSE</h1>
                 <div className="flex flex-col gap-2 items-start mt-1">
                   <Link
-                    onClick={(e) => {
-                      // e.preventDefault();
-                      setIsSidebarOpen(false);
-                      document.body.classList.remove("no-scroll");
-                    }}
-                    href={"/"} className=" flex items-center gap-2 ">
-                    <div>
-                      <AiFillHome className={"text-xl "} />
-                    </div>
-                    <p className=""> Home</p>
-                  </Link>
-                  <a href={"/dashboard/new-listing-form"}
+                    href={`/`}
                     onClick={(e) => {
                       setIsSidebarOpen(false);
                       document.body.classList.remove("no-scroll");
                     }}
-                    className=" flex items-center gap-2 ">
-                    <div>
-                      <HiBuildingOffice className={"text-xl "} />
-                    </div>
-                    <p className="">
-                      List Your Property
-                    </p>
-                  </a>
-                  {/* <Link href={"/#"}
-                onClick={(e) => {
-                  // e.preventDefault();
-                  setIsSidebarOpen(false);
-                  //   dispatch(openLoginModal());
-                }}
-                className=" flex items-center gap-2 ">
-                <div>
-                  <MdLocalPhone  className={"text-xl "}/>
-                </div>
-                <p className="">8989496989</p>
-              </Link> */}
-
-                  <a
-                    href={"/dashboard"}
-                    className=" flex items-center gap-2 "
-                    onClick={(e) => {
-                      setIsSidebarOpen(false);
-                      document.body.classList.remove("no-scroll");
-                    }}
+                    className=""
                   >
-                    <div><MdDashboard className={`text-xl`} /></div>
-                    <p className="">Dashboard</p>
-                  </a>
+                    Home
+                  </Link>
+                  <Link
+                    onClick={(e) => {
+                      setIsSidebarOpen(false);
+                      document.body.classList.remove("no-scroll");
+                    }}
+                    href={`/`}
+                    className=""
+                  >
+                    Find Jobs
+                  </Link>
+                  <Link
+                    onClick={(e) => {
+                      setIsSidebarOpen(false);
+                      document.body.classList.remove("no-scroll");
+                    }}
+                    href={`/`}
+                    className=""
+                  >
+                    Employers
+                  </Link>
+                  <Link
+                    onClick={(e) => {
+                      setIsSidebarOpen(false);
+                      document.body.classList.remove("no-scroll");
+                    }}
+                    href={`/`}
+                    className=""
+                  >
+                    Candidates
+                  </Link>
+                  <Link
+                    onClick={(e) => {
+                      setIsSidebarOpen(false);
+                      document.body.classList.remove("no-scroll");
+                    }}
+                    href={`/`}
+                    className=""
+                  >
+                    Blog
+                  </Link>
+                  <Link
+                    onClick={(e) => {
+                      setIsSidebarOpen(false);
+                      document.body.classList.remove("no-scroll");
+                    }}
+                    href={`/`}
+                    className=""
+                  >
+                    About Us
+                  </Link>
                 </div>
               </div>
               <div className="flex flex-col px-3 gap-2 items-start ">
-                <h1 className="text-2xl text-[#a9a9a9] font-light">
-                  SOCIAL
-                </h1>
+                <h1 className="text-2xl text-[#a9a9a9] font-light">SOCIAL</h1>
                 <div className="flex flex-col gap-2 items-start mt-1">
                   {social?.map((media) => {
-
                     return (
                       <Link
-                      onClick={(e) => {
-                        setIsSidebarOpen(false);
-                        document.body.classList.remove("no-scroll");
-                      }}
+                        onClick={(e) => {
+                          setIsSidebarOpen(false);
+                          document.body.classList.remove("no-scroll");
+                        }}
                         href={media.key}
                         target="_blank"
                         key={media.key}
                         className="flex items-center gap-3"
                       >
                         <div className="text-lg">{media.iconName}</div>
-                        <p>
-                          {media.name}
-                        </p>
+                        <p>{media.name}</p>
                       </Link>
                     );
-
                   })}
                 </div>
               </div>
-             
             </div>
           </div>
         </OutsideClickHandler>

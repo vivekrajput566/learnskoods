@@ -29,7 +29,7 @@ const JobCard = ({item}:any) => {
                 `${seconds} seconds ago`;
 
 
-                console.log("formattedTime",formattedTime);
+                // console.log("formattedTime",formattedTime);
                 
   return (
     <div className='border sm:p-8 p-4 rounded-lg flex gap-4'>
@@ -38,7 +38,7 @@ const JobCard = ({item}:any) => {
         </div>
         <div className='flex flex-col gap-4'>
             <h3 className='text-[15px] font-semibold line-clamp-1'>{item.job_title}</h3>
-            <div className='flex items-center gap-x-5'>
+            <div className='flex sm:flex-row flex-col sm:items-center gap-x-5 gap-y-2'>
                 {/* <div className='flex items-center  gap-x-1'>
                 <div className='text-lg text-gray-500'><IoBagRemoveOutline /></div>
                 <p className='text-[13px] text-gray-500'>Segment</p>
@@ -49,7 +49,7 @@ const JobCard = ({item}:any) => {
                 <p className='text-[13px] text-gray-500'>{item?.location}</p>
                 </div>}
                 <div className='flex items-center  gap-x-1'>
-                <div className='text-lg text-gray-500'><GoClock /></div>
+                <div className='text-lg text-gray-500'><GoClock className='sm:tect-base text-sm'/></div>
                 <p className='text-[13px] text-gray-500'>{formattedTime}</p>
                 </div>
                {item?.min_salary&&item?.max_salary&&
@@ -59,7 +59,7 @@ const JobCard = ({item}:any) => {
                  </div>
                }
             </div>
-            <div className='flex items-center gap-x-5'>
+            <div className='flex  items-center gap-x-5'>
 {item?.job_type&&
                 <p className='text-[13px] px-5 py-[2px] rounded-full bg-[#dde8f8] text-[#3172d3]'>{item?.job_type}</p>
 
