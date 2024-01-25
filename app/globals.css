@@ -82,4 +82,7 @@
      transform: rotate(360deg) translateY(-200%);
   }
 }
+.no-scroll {
+  overflow: hidden;
+}
 

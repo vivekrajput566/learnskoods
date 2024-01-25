@@ -35,7 +35,7 @@ const NavbarClient = () => {
       } else {
        
         console.log('Cookie is not set.');
-        
+
       }
     }, []);
 
@@ -72,7 +72,10 @@ const NavbarClient = () => {
           <div className="outer-box flex items-center space-x-4">
             {/* <a href="/candidates-dashboard/cv-manager" className="upload-cv">Upload your CV</a> */}
             <div className="btn-box">
-              <div onClick={()=>setIsOpen("login")}  className="bg-[#e2eaf8] text-[#4f7dda] px-5 py-2 text-[13px] rounded-md cursor-pointer" >{!username?"Login / Register":username}</div>
+              <div onClick={()=>{
+                setIsOpen("login")
+               document.body.classList.add("no-scroll");
+            }}  className="bg-[#e2eaf8] text-[#4f7dda] px-5 py-2 text-[13px] rounded-md cursor-pointer" >{!username?"Login / Register":username}</div>
               {/* <Link href={`/signup`}  className="theme-btn btn-style-one">Job Post</Link> */}
             </div>
           </div>
