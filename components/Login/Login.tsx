@@ -148,7 +148,7 @@ const Login = ({ setIsOpen, isOpen }: any) => {
                   <div className="md:text-xl text-md font-semibold mb-4 text-center">{loginError}</div>
 
                   <form method="post" onSubmit={handleLogin}>
-                    <div className="mb-4">
+                    <div className="mb-4 login-container">
                       <label className="block text-gray-700 text-sm font-semibold mb-2">Username</label>
                       <input
                         className="rounded w-full py-4 px-3 bg-[#f0f5f7]"
@@ -159,7 +159,7 @@ const Login = ({ setIsOpen, isOpen }: any) => {
                         onChange={handleInputChange}
                       />
                     </div>
-                    <div className="mb-4">
+                    <div className="mb-4 login-container">
                       <label className="block text-gray-700 text-sm font-semibold mb-2">Password</label>
                       <input
                         className="rounded w-full py-4 px-3 bg-[#f0f5f7]"
@@ -176,10 +176,10 @@ const Login = ({ setIsOpen, isOpen }: any) => {
                       </button>
                     </div>
                   </form>
-                  <div className="bottom-box">
-                    <div className="text-center text-xs text-gray-500">
+                  <div className="bottom-box flex justify-center  ">
+                    <div className="text-center text-xs text-gray-500 flex items-center gap-1">
                       Don't have an account?{' '}
-                      <div onClick={() => setIsShow(2)} className="call-modal signup text-gray-600 text-sm font-semibold">
+                      <div onClick={() => setIsShow(2)} className="call-modal signup text-gray-600 text-sm font-semibold cursor-pointer">
                         Signup
                       </div>
                     </div>
@@ -198,7 +198,7 @@ const Login = ({ setIsOpen, isOpen }: any) => {
                   <h3 className="md:text-2xl text-xl font-semibold mb-4 text-center">Create a Free Superio Account</h3>
                   <div className="md:text-lg text-md font-semibold mb-4 text-red-500 text-center">{error}</div>
                   <form method="post" onSubmit={handleRegister}>
-                    <div className="mb-4">
+                    <div className="mb-4 login-container">
                       <label className="block text-gray-700 text-sm font-semibold mb-2">Username</label>
                       <input
                         className="rounded w-full py-4 px-3 bg-[#f0f5f7]"
@@ -209,7 +209,7 @@ const Login = ({ setIsOpen, isOpen }: any) => {
                         onChange={handleInputChange}
                       />
                     </div>
-                    <div className="mb-4">
+                    <div className="mb-4 login-container">
                       <label className="block text-gray-700 text-sm font-semibold mb-2">Password</label>
                       <input
                         className="rounded w-full py-4 px-3 bg-[#f0f5f7]"
@@ -220,7 +220,7 @@ const Login = ({ setIsOpen, isOpen }: any) => {
                         onChange={handleInputChange}
                       />
                     </div>
-                    <div className="mb-4">
+                    <div className="mb-4 login-container">
                       <label className="block text-gray-700 text-sm font-semibold mb-2">Email</label>
                       <input
                         className="rounded w-full py-4 px-3 bg-[#f0f5f7]"
@@ -237,10 +237,10 @@ const Login = ({ setIsOpen, isOpen }: any) => {
                       </button>
                     </div>
                   </form>
-                  <div className="bottom-box">
-                    <div className="text-center text-xs text-gray-500">
+                  <div className="bottom-box flex justify-center">
+                    <div className="text-center text-xs text-gray-500 flex items-center gap-1">
                       Already have an account?{' '}
-                      <div onClick={() => setIsShow(1)} className="call-modal signup text-gray-600 text-sm font-semibold">
+                      <div onClick={() => setIsShow(1)} className=" cursor-pointer signup text-gray-600 text-sm font-semibold">
                         Login
                       </div>
                     </div>

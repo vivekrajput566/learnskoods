@@ -53,19 +53,21 @@ const Footer = () => {
   return (
     <div className=''>
         <div className='border-t border-b'>
-        <div className='flex border-b py-20 px-[7%] gap-5'>
-            <div className='w-[30%] '>
+        <div className='flex md:flex-row flex-col border-b md:py-20 py-5 px-[7%] gap-5'>
+            <div className='w-[30%] flex flex-col gap-5 '>
             <h2 className="text-3xl font-bold text-[#1967d2]">Learnkoods</h2>
-            <div><h5>Call us</h5>
+            <div><h5 className='font-semibold '>Call us</h5>
             <h5 className='text-[#266fd4] font-semibold text-lg'>123 456 7890</h5>
             </div>
-            <p className='text-[13px] text-gray-500'>329 Queensberry Street, North Melbourne VIC</p>
+           <div className='flex flex-col gap-3'>
+           <p className='text-[13px] text-gray-500'>329 Queensberry Street, North Melbourne VIC</p>
             <p className='text-[13px] text-gray-500'>3051, Australia.</p>
 
             <p className='text-[13px] text-gray-500'>support@learnkoods.com</p>
+           </div>
 
             </div>
-            <div className='flex w-[70%]  gap-5'>
+            <div className='flex md:flex-row flex-col w-[70%]  gap-5'>
             {DUMMY_DATA.map((item: any, idx: number) => {
                 return (
                   <div className="lg:w-1/4  flex flex-col gap-4   " key={idx}>
@@ -92,7 +94,7 @@ const Footer = () => {
         </div>
         <div className='flex items-center justify-between px-[7%] my-10'>
             <p className='text-[13px] text-gray-500'>© 2024 Learnkoods by Epic . All Right Reserved.</p>
-            <div className='flex items-center gap-8'>
+            <div className='flex items-center md:gap-8 gap-4'>
                 <div><FaFacebookF className='text-base text-gray-500'/></div>
                 <div><FaTwitter className='text-base text-gray-500'/></div>
                 <div><FaInstagram className='text-base text-gray-500'/></div>
