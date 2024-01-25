@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { RxCross1 } from 'react-icons/rx';
 import Signup from '../Signup/Signup';
 
-const Login = ({ setIsOpen, isOpen }: any) => {
+const Login = ({ setIsOpen, isOpen ,setUsername}: any) => {
   const [isShow, setIsShow] = useState(1);
   const [error, setError] = useState("");
   const [loginError, setLoginError] = useState("");
@@ -67,15 +67,21 @@ const Login = ({ setIsOpen, isOpen }: any) => {
         }),
       });
 
-      console.log(await loginResponse.json());
+  
 
       if (loginResponse.ok) {
         // Handle successful login
+
+        const result=await loginResponse.json();
+     
+
+        setUsername(result.data.username)
+        
         setLoginError('User logged in successfully');
       } else {
         
         setLoginError('Failed to log in');
-        
+
       }
     } catch (error) {
       setLoginError('Failed to log in');

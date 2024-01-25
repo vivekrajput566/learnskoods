@@ -6,6 +6,19 @@ import Login from '../Login/Login';
 
 const NavbarClient = () => {
     const [isOpen,setIsOpen]=useState("none")
+    const [username,setUsernameData]=useState(false)
+  
+
+    function setUsername(data:any){
+
+      setUsernameData(data);
+
+
+
+    }
+
+
+
   return (
     <header className="main-header bg-white text-black py-4 shadow-xl px-body">
       <div className="main-box container mx-auto">
@@ -30,12 +43,12 @@ const NavbarClient = () => {
           <div className="outer-box flex items-center space-x-4">
             {/* <a href="/candidates-dashboard/cv-manager" className="upload-cv">Upload your CV</a> */}
             <div className="btn-box">
-              <div onClick={()=>setIsOpen("login")}  className="theme-btn btn-style-three call-modal" data-bs-toggle="modal" data-bs-target="#loginPopupModal">Login / Register</div>
+              <div onClick={()=>setIsOpen("login")}  className="theme-btn btn-style-three call-modal" data-bs-toggle="modal" data-bs-target="#loginPopupModal">{!username?"Login / Register":username}</div>
               {/* <Link href={`/signup`}  className="theme-btn btn-style-one">Job Post</Link> */}
             </div>
           </div>
         </div>
-        {isOpen==="login"&&<Login setIsOpen={setIsOpen} isOpen={isOpen}/>}
+        {isOpen==="login"&&<Login setIsOpen={setIsOpen} isOpen={isOpen} setUsername={setUsername}/>}
       </div>
     </header>
   );
