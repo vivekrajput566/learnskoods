@@ -122,10 +122,10 @@ const MainJobSection = () => {
         }
       }
 
-      useEffect(()=>{
+      useEffect(() => {
         console.log("1");
-        
-        const sortedJobs = jobs.sort((a: any, b: any) => {
+      
+        const sortedJobs = [...jobs].sort((a: any, b: any) => {
           if (sortBy.id === 2) {
             // Sort by Newest
             return new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime();
@@ -138,10 +138,12 @@ const MainJobSection = () => {
             return 0;
           }
         });
-        console.log("sortedJobs",sortedJobs);
-        
-        setJobs(sortedJobs)
-      },[sortBy])
+      
+        console.log("sortedJobs", sortedJobs);
+      
+        setJobs(sortedJobs);
+      }, [sortBy]);
+      
       // useEffect(()=>{
 
       // },[jobs])

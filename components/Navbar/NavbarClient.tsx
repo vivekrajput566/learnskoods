@@ -1,11 +1,15 @@
 
 "use client"
 import Link from 'next/link';
-import React,{useState} from 'react';
+import React,{useState, useEffect} from 'react';
 import Login from '../Login/Login';
 import MobileNav from './MobileNav';
 import { useScrollDirection } from "../../utils/useScroll";
 import FixedNav from './FixedNav';
+import Cookies from 'js-cookie';
+
+
+
 
 const NavbarClient = () => {
     const [isOpen,setIsOpen]=useState("none")
@@ -14,11 +18,26 @@ const NavbarClient = () => {
 
     function setUsername(data:any){
 
+      Cookies.set('username',data);
       setUsernameData(data);
 
+    } 
 
+    useEffect(() => {
+    
+      const isCookieSet = Cookies.get('username') !== undefined;
+  
+      if (isCookieSet) {
+        
+        const cookieValue = Cookies.get('username');
+          setUsernameData(cookieValue)
 
-    }
+      } else {
+       
+        console.log('Cookie is not set.');
+        
+      }
+    }, []);
 
 
 
