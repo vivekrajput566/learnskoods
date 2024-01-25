@@ -31,10 +31,10 @@ const NavbarClient = () => {
             <ul className="flex space-x-6 text-[13px]">
               <li><a href="/" className="">Home</a></li>
               <li><a href="/job-list/job-list-v1" className="">Find Jobs</a></li>
-              {/* <li><a href="/employers-list/employers-list-v1" className="hover:text-gray-300">Employers</a></li> */}
-              {/* <li><a href="/candidates-list/candidates-list-v1" className="hover:text-gray-300">Candidates</a></li> */}
-              {/* <li><a href="/blog/blog-list-v1" className="hover:text-gray-300">Blog</a></li> */}
-              {/* <li><a href="/about" className="hover:text-gray-300">About Us</a></li> */}
+              <li><a href="/employers-list/employers-list-v1" className="hover:text-gray-300">Employers</a></li>
+              <li><a href="/candidates-list/candidates-list-v1" className="hover:text-gray-300">Candidates</a></li>
+              <li><a href="/blog/blog-list-v1" className="hover:text-gray-300">Blog</a></li>
+              <li><a href="/about" className="hover:text-gray-300">About Us</a></li>
             </ul>
           </nav>
           <div className="outer-box flex items-center space-x-4">

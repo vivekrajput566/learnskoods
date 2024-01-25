@@ -8,7 +8,7 @@ const Login = ({ setIsOpen, isOpen }: any) => {
   const [isShow, setIsShow] = useState(1);
   const [error, setError] = useState("");
   const [loginError, setLoginError] = useState("");
-  const [loading,setLoading]=useState(false)
+  const [loading, setLoading] = useState(false)
   const [formData, setFormData] = useState({
 
     username: '',
@@ -17,7 +17,7 @@ const Login = ({ setIsOpen, isOpen }: any) => {
 
   });
 
-  const handleInputChange = (e:any) => {
+  const handleInputChange = (e: any) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
@@ -28,13 +28,10 @@ const Login = ({ setIsOpen, isOpen }: any) => {
 
 
   const handleLogin = async (e: any) => {
-setLoading(true)
-
+    setLoading(true)
     e.preventDefault();
-    
     const apiTokenEndpoint = 'https://learnkoodsapi.onrender.com/api/token/';
     const loginEndpoint = 'https://learnkoodsapi.onrender.com/login_api/';
-  
     try {
       // Step 1: Get API Token
       const apiTokenResponse = await fetch(apiTokenEndpoint, {
@@ -47,16 +44,14 @@ setLoading(true)
           password: formData.password,
         }),
       });
-  
+
       if (!apiTokenResponse.ok) {
-setLoading(false)
-       
+        setLoading(false)
         setLoginError('User Not Exist');
         return;
       }
-  
+
       const apiTokenResult = await apiTokenResponse.json();
-  
       // Step 2: Perform Login with obtained API Token
       const loginResponse = await fetch(loginEndpoint, {
         method: 'POST',
@@ -74,85 +69,63 @@ setLoading(false)
 
       if (loginResponse.ok) {
         // Handle successful login
-        setIsOpen(false) 
+        setIsOpen(false)
         document.body.classList.remove("no-scroll")
         setLoginError('User logged in successfully');
       } else {
-setLoading(false)
-        
+        setLoading(false)
         setLoginError('Failed to log in');
-        
       }
-setLoading(false)
+      setLoading(false)
 
     } catch (error) {
-setLoading(false)
-
+      setLoading(false)
       setLoginError('Failed to log in');
     }
   };
 
 
 
-  
-  const handleRegister = async (e:any) => {
-setLoading(true)
-      e.preventDefault();
-      
-    
 
-      const apiEndpoint = 'https://learnkoodsapi.onrender.com/user_api/';
-      const requestBody = new FormData();
-      requestBody.append('username', formData.username);
-      requestBody.append('password', formData.password);
-      requestBody.append('email', formData.email);
-  
-      try {
-        
-        const response = await fetch(apiEndpoint, {
-
-          method: 'POST',
-          body: requestBody,
-
-        });
-  
-  
-        if (response.ok) {
-          console.log("fff")
-         
+  const handleRegister = async (e: any) => {
+    setLoading(true)
+    e.preventDefault();
+    const apiEndpoint = 'https://learnkoodsapi.onrender.com/user_api/';
+    const requestBody = new FormData();
+    requestBody.append('username', formData.username);
+    requestBody.append('password', formData.password);
+    requestBody.append('email', formData.email);
+    try {
+      const response = await fetch(apiEndpoint, {
+        method: 'POST',
+        body: requestBody,
+      });
+      if (response.ok) {
+        console.log("fff")
         setLoading(false)
-        setIsOpen(false) 
+        setIsOpen(false)
         document.body.classList.remove("no-scroll")
-           setError('User registered successfully');
-
-        } else {
-
-          console.log("fff")
-          // Handle registration error
-          console.log(response)
-          setLoading(false)
-
-          setError('User Already Register');
-        }
-      }
-      catch (error:any) {
+        setError('User registered successfully');
+      } else {
+        console.log("fff")
+        // Handle registration error
+        console.log(response)
         setLoading(false)
-
-        setError(`Error during registration: ${error}`); 
-
+        setError('User Already Register');
       }
-    };
-    
-  
-
+    }
+    catch (error: any) {
+      setLoading(false)
+      setError(`Error during registration: ${error}`);
+    }
+  };
 
   return (
-
     <div className="h-[100vh] w-[100vw] bg-[rgba(0,0,0,0.5)] fixed top-0 left-0  flex justify-center items-center z-50">
       <div className="modal-content rounded-md md:w-[35%] sm:w-[60%] w-[85%] bg-white md:p-10 p-5 relative">
         <button type="button" className="absolute right-5 top-5 bg-[#f0f5f7] md:p-3 p-2 rounded-md" data-bs-dismiss="modal" onClick={() => {
-          setIsOpen(false) 
-           document.body.classList.remove("no-scroll")
+          setIsOpen(false)
+          document.body.classList.remove("no-scroll")
         }}><RxCross1 /></button>
 
         {isShow === 1 && (
@@ -161,9 +134,7 @@ setLoading(true)
               <div className="login-form default-form">
                 <div className="form-inner">
                   <h3 className="md:text-2xl text-xl font-semibold mb-4 text-center">Login to Superio</h3>
-
                   <div className="md:text-xl text-md font-semibold mb-4 text-center text-[red]">{loginError}</div>
-
                   <form method="post" onSubmit={handleLogin}>
                     <div className="mb-4 login-container">
                       <label className="block text-gray-700 text-sm font-semibold mb-2">Username</label>
@@ -188,19 +159,19 @@ setLoading(true)
                       />
                     </div>
                     <div className="mb-4">
-                  <div className="bg-blue-500 w-full text-white py-4 px-4 rounded text-center ">
-                  <button  type="submit" name="log-in"
-                      style={{ height: "100%", position: "relative", }}>
-                        {/* Log In */}
-                        {loading && (
-                                <div className='' style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", }}>
-                                    <Loader />
-                                </div>
-                            )}
-                            {!loading && "Log In"}
+                      <div className="bg-blue-500 w-full text-white py-4 px-4 rounded text-center ">
+                        <button type="submit" name="log-in"
+                          style={{ height: "100%", position: "relative", }}>
+                          {/* Log In */}
+                          {loading && (
+                            <div className='' style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", }}>
+                              <Loader />
+                            </div>
+                          )}
+                          {!loading && "Log In"}
 
-                      </button>
-                  </div>
+                        </button>
+                      </div>
                     </div>
                   </form>
                   <div className="bottom-box flex justify-center  ">
@@ -259,18 +230,18 @@ setLoading(true)
                       />
                     </div>
                     <div className="mb-4">
-                     <div className="bg-blue-500 w-full text-white py-4 px-4 rounded text-center ">
-                     <button  type="submit" name="register"
-                       style={{ height: "100%", position: "relative", }}>
-                        {/* Register */}
-                        {loading && (
-                                <div className='' style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", }}>
-                                    <Loader />
-                                </div>
-                            )}
-                            {!loading && "Register"}
-                      </button>
-                     </div>
+                      <div className="bg-blue-500 w-full text-white py-4 px-4 rounded text-center ">
+                        <button type="submit" name="register"
+                          style={{ height: "100%", position: "relative", }}>
+                          {/* Register */}
+                          {loading && (
+                            <div className='' style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", }}>
+                              <Loader />
+                            </div>
+                          )}
+                          {!loading && "Register"}
+                        </button>
+                      </div>
 
                     </div>
                   </form>

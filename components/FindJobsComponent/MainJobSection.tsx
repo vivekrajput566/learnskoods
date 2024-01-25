@@ -148,7 +148,7 @@ const MainJobSection = () => {
       console.log(sortBy,"sortBy");
       
   return (
-    <div className='flex md:flex-row flex-col px-[7%] gap-x-7 sm:mt-14 sm:mb-14 mt-24 mb-7'>
+    <div className='flex md:flex-row flex-col px-[7%] gap-x-7 sm:mt-14 sm:mb-14 mt-7 mb-7'>
         <div className='md:w-[35%] w-[100%]'>
         {/* <FilterSection/> */}
         <div className='bg-[#f5f7fc] h-full p-8 rounded-md'>

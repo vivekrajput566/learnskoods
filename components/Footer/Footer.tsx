@@ -79,7 +79,7 @@ const Footer = () => {
                       {item.subLinks.map((item: any, idx: number) => {
                         return (
                           <div key={idx} >
-                            <p className="text-[13px] text-gray-500 hover:text-white font-medium">
+                            <p className="text-[13px] text-gray-500 font-medium">
                               {/* <p className="text-sm text-[#fff] font-medium"> */}
                               {item.name}
                             </p>
